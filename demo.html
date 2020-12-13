@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/require.js/2.3.6/require.min.js"></script>
+    <script src="./bundle.js"></script>
+    <script>
+      let language = null;
+      require(["langs/zhHans"], function (lang) {
+        language = lang.default;
+        require(["index"], function ({ Engine}) {
+            let canvasElement = document.createElement("canvas");
+            document.body.appendChild(canvasElement);
+            window.engine = new Engine(
+              canvasElement,
+              canvasElement.getContext("2d"),
+              language
+            );
+          
+        });
+      });
+    </script>
+  </body>
+</html>
